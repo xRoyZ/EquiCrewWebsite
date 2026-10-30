@@ -1,0 +1,137 @@
+/* EquiCube page (/equicube/): showcase, the four features, the advantages band.
+   Source: design/mockups/equicube.html and design/mockups/styles.css ("product page").
+   Mobile-first: phone values are the defaults, wider layouts come with min-width queries.
+   Shared parts (.page, .grid, .section, .sheet, .cell, .band, .cta, .btn) live in base.css
+   and the kit. */
+
+/* showcase: the open cube on a white sheet beside the product copy */
+.showcase {
+  align-items: end;
+}
+.showcase-sheet {
+  display: grid;
+  place-items: center;
+  padding: var(--s-2);
+}
+.showcase-sheet img {
+  width: 100%;
+  max-width: 520px;
+  filter: var(--shadow-contact);
+}
+.showcase-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: flex-start;
+}
+@media (min-width: 721px) {
+  .showcase-sheet {
+    padding: var(--s-4);
+  }
+}
+@media (min-width: 961px) {
+  .showcase-sheet {
+    grid-column: 1 / 9;
+    aspect-ratio: 4 / 3;
+  }
+  .showcase-copy {
+    grid-column: 9 / 13;
+  }
+}
+
+/* features: one lead cell with the giant "40" beside a 2x2 bento */
+.features {
+  align-items: stretch;
+}
+.features-side {
+  display: grid;
+  gap: var(--s-3);
+}
+.feature {
+  gap: var(--s-1);
+  padding: var(--cell-pad-sm);
+}
+.feature--lead {
+  padding: var(--cell-pad);
+  gap: var(--s-2);
+}
+.feature--lead .tagline {
+  margin-top: var(--s-2);
+}
+.feature-title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.figure {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-1);
+  white-space: nowrap;
+}
+.figure-num {
+  font: 300 var(--fs-figure) / 0.9 var(--font-display);
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+.figure-unit {
+  font: 700 var(--fs-32) / 1 var(--font-display);
+}
+@media (min-width: 961px) {
+  .feature--lead {
+    aspect-ratio: 1;
+  }
+  .features-side {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    align-content: start;
+  }
+  .feature--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* advantages: the dark band with a numbered list of six */
+.advantages {
+  padding-top: var(--s-5);
+  padding-bottom: var(--s-5);
+}
+.adv-intro {
+  color: var(--on-band-muted);
+}
+.adv-list {
+  counter-reset: adv;
+  display: grid;
+  column-gap: var(--s-3);
+  margin-top: var(--s-4);
+}
+.adv-list li {
+  counter-increment: adv;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-1);
+  align-items: baseline;
+  padding: var(--s-3) 0;
+  border-top: 1px solid var(--band-line);
+}
+.adv-list li::before {
+  content: counter(adv, decimal-leading-zero);
+  font: 700 var(--fs-13) / 1.4 var(--font-text);
+  letter-spacing: 0.16em;
+  color: var(--on-band-muted);
+  font-variant-numeric: tabular-nums;
+}
+.adv-list .h-2 {
+  min-width: 0;
+}
+@media (min-width: 721px) {
+  .adv-list li {
+    grid-template-columns: 56px 1fr;
+    gap: var(--s-2);
+  }
+}
+@media (min-width: 761px) {
+  .adv-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
