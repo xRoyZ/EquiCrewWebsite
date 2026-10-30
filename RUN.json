@@ -1,0 +1,41 @@
+{
+  "runcontract": 1,
+  "services": [
+    {
+      "name": "web",
+      "dir": "frontend",
+      "stack": "web-static",
+      "kind": "static",
+      "serve_dir": ".",
+      "start": ["node", "dev_server.mjs"],
+      "port": 8080,
+      "port_env": "PORT",
+      "test": [["node", "--test", "tests/*.test.mjs"]],
+      "env": {
+        "API_BASE_URL": {"dev": "${service:api.origin}"}
+      }
+    },
+    {
+      "name": "api",
+      "dir": "backend",
+      "stack": "python",
+      "kind": "server",
+      "install": [["${python}", "-m", "pip", "install", "-r", "requirements.txt"]],
+      "start": ["${python}", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "${PORT}", "--no-access-log"],
+      "port": 8000,
+      "port_env": "PORT",
+      "health": {"path": "/api/health", "expect_status": [200]},
+      "test": [["${python}", "-m", "pytest"]],
+      "env": {
+        "SMTP_HOST": {"external": true, "degraded_without": "POST /api/contact answers 503 and sends no e-mail"},
+        "SMTP_PORT": {"external": true, "degraded_without": "the SMTP port defaults to 587"},
+        "SMTP_USERNAME": {"external": true, "degraded_without": "the API does not log in to the SMTP server; a server that requires a login makes POST /api/contact answer 503"},
+        "SMTP_PASSWORD": {"external": true, "degraded_without": "the API does not log in to the SMTP server; a server that requires a login makes POST /api/contact answer 503"},
+        "SMTP_FROM": {"external": true, "degraded_without": "POST /api/contact answers 503 and sends no e-mail"},
+        "CONTACT_TO": {"dev": "office@equicrew.com"},
+        "CORS_ORIGIN": {"dev": "${service:web.origin}"},
+        "TRUSTED_PROXIES": {"dev": ""}
+      }
+    }
+  ]
+}
