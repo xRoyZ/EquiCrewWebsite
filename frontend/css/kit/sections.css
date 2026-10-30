@@ -1,0 +1,73 @@
+/* Kit / sections: the blocks pages are composed of — square cells, white sheets, the dark
+   band and the call to action. Source: design/mockups/styles.css ("cells", "bands, call to
+   action, footer").
+
+   Defined once in base.css and only used here: .page-head, .main-end, .section, .grid and
+   the column classes .g-1-4 … .g-1-12 (g-1-5, g-6-12, g-1-7, g-8-12, g-1-9 among them),
+   which span from 961 px and stack to one column below. */
+
+/* cell: one message per square */
+.cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  min-width: 0;
+  padding: var(--cell-pad);
+  border-radius: var(--r-cell);
+}
+.cell--line {
+  border: 1px solid var(--ink);
+}
+.cell--sheet {
+  background: var(--surface);
+}
+.cell--tone {
+  background: var(--tone);
+}
+.cell--dark {
+  background: var(--band);
+  color: var(--on-band);
+  --focus: var(--accent);
+}
+.cell .cell-end {
+  margin-top: auto;
+}
+@media (min-width: 961px) {
+  .cell--sq {
+    aspect-ratio: 1;
+  }
+}
+
+/* sheet: a white surface for a form or a showcase */
+.sheet {
+  min-width: 0;
+  background: var(--surface);
+  border-radius: var(--r-cell);
+  padding: var(--cell-pad);
+}
+
+/* band: the one hard flip to dark */
+.band {
+  background: var(--band);
+  color: var(--on-band);
+  --focus: var(--accent);
+}
+.band--deep {
+  background: var(--band-deep);
+}
+
+/* call to action: statement on the left, the pill at the bottom right */
+.cta {
+  padding-top: var(--s-5);
+  padding-bottom: var(--s-5);
+}
+.cta-action {
+  display: flex;
+  align-items: flex-end;
+}
+@media (min-width: 961px) {
+  .cta-action {
+    grid-column: 10 / 13;
+    justify-content: flex-end;
+  }
+}

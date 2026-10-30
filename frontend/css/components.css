@@ -1,0 +1,9 @@
+/* EquiCrew UI kit: every component class the approved screens (design/mockups/) share.
+   The page documents link this one file; the kit parts are imported in this order, so a
+   later part may refine an earlier one. Tokens, reset, type roles, the page frame and the
+   grid utilities live in base.css, which every document links before this file. */
+@import url("kit/frame.css");
+@import url("kit/sections.css");
+@import url("kit/form.css");
+@import url("kit/contact.css");
+@import url("kit/legal.css");
