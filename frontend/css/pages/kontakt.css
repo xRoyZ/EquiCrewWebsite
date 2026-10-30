@@ -1,0 +1,16 @@
+/* Kontakt page (/kontakt/). Everything else — form, fields, errors, alert, thanks sheet,
+   details card and the send button's sending state — comes from the kit
+   (css/components.css). Source: design/mockups/kontakt.html and its state screens. */
+
+/* the grid under the heading (design/mockups/kontakt.html:38) */
+.contact-grid {
+  margin-top: var(--s-4);
+}
+
+/* sending (design/mockups/kontakt-senden.html): the button's progress fill comes from the
+   kit's .is-sending; the busy form shows the progress cursor over its disabled fields */
+[data-contact-form][aria-busy="true"],
+[data-contact-form][aria-busy="true"] input:disabled,
+[data-contact-form][aria-busy="true"] textarea:disabled {
+  cursor: progress;
+}
