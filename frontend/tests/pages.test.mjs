@@ -134,6 +134,58 @@ test("the header links every navigation target and marks only the current page",
   }
 });
 
+const NAV_ENTRIES = [
+  ["/", "Start"],
+  ["/ueber-uns/", "Über uns"],
+  ["/equicube/", "EquiCube"],
+  ["/kontakt/", "Kontakt"],
+  ["/impressum/", "Impressum"],
+];
+
+function siteNav(html) {
+  const match = html.match(/<nav\b[^>]*\bid="site-nav"[^>]*>[\s\S]*?<\/nav>/i);
+  return match ? match[0] : "";
+}
+
+function navLinks(nav) {
+  return [...nav.matchAll(/<a\b([^>]*)>([^<]*)<\/a>/gi)].map((m) => ({
+    attrs: m[1],
+    href: (m[1].match(/\bhref="([^"]*)"/i) || [])[1],
+    text: m[2].trim(),
+    current: /\baria-current="page"/i.test(m[1]),
+  }));
+}
+
+test("nav #site-nav lists Start, Über uns, EquiCube, Kontakt and Impressum in order on every page", () => {
+  for (const page of PAGES) {
+    const nav = siteNav(read(page.file));
+    assert.ok(nav, `${page.file} has no nav#site-nav`);
+    const links = navLinks(nav);
+    assert.deepEqual(
+      links.map((l) => [l.href, l.text]),
+      NAV_ENTRIES,
+      `${page.file} nav entries differ`,
+    );
+    for (const link of links) {
+      assert.match(link.attrs, /\bclass="nav-link"/, `${page.file} ${link.href} lacks nav-link`);
+    }
+    const impressum = links.find((l) => l.href === "/impressum/");
+    assert.ok(impressum, `${page.file} nav does not link /impressum/`);
+  }
+});
+
+test("exactly the current page's nav entry carries aria-current, Datenschutz marks none", () => {
+  for (const page of PAGES) {
+    const current = navLinks(siteNav(read(page.file))).filter((l) => l.current);
+    if (page.route === "/datenschutz/") {
+      assert.equal(current.length, 0, `${page.file} must mark no nav entry`);
+    } else {
+      assert.equal(current.length, 1, `${page.file} must mark exactly one nav entry`);
+      assert.equal(current[0].href, page.route, `${page.file} marks the wrong nav entry`);
+    }
+  }
+});
+
 test("the footer has the address, mailto, tel, legal links and the year", () => {
   for (const page of PAGES) {
     const footer = section(read(page.file), "footer");
