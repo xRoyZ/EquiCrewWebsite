@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/pages/kontakt.css">
   <script src="../js/config.js"></script>
+  <script type="module" src="../js/form-validation.mjs"></script>
+  <script type="module" src="../js/contact-form.js"></script>
   <script src="../js/site.js" defer></script>
 </head>
 <body>
@@ -45,7 +47,99 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" class="main-end">
+  <section class="page page-head" data-od-id="contact">
+    <h1 class="h-1" data-od-id="contact-heading">Kontakt</h1>
+    <div class="grid contact-grid">
+      <div class="g-1-7" data-od-id="contact-sheet">
+        <form class="sheet form" data-contact-form novalidate method="post" aria-label="Kontaktformular" data-od-id="contact-form">
+          <div class="form-row form-row--two">
+            <div class="field">
+              <label for="vorname">Vorname</label>
+              <input id="vorname" name="vorname" type="text" autocomplete="given-name" required aria-describedby="vorname-error">
+              <p class="field-error" id="vorname-error" hidden
+                ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                  ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    ><circle cx="12" cy="12" r="10"
+                    /><path d="M12 8v4m0 4h.01"
+                  /></g
+                ></svg
+                ><span></span
+              ></p>
+            </div>
+            <div class="field">
+              <label for="nachname">Nachname</label>
+              <input id="nachname" name="nachname" type="text" autocomplete="family-name" required aria-describedby="nachname-error">
+              <p class="field-error" id="nachname-error" hidden
+                ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                  ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    ><circle cx="12" cy="12" r="10"
+                    /><path d="M12 8v4m0 4h.01"
+                  /></g
+                ></svg
+                ><span></span
+              ></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
+            <p class="field-error" id="email-error" hidden
+                ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                  ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    ><circle cx="12" cy="12" r="10"
+                    /><path d="M12 8v4m0 4h.01"
+                  /></g
+                ></svg
+                ><span></span
+              ></p>
+          </div>
+          <div class="field">
+            <label for="nachricht">Nachricht</label>
+            <textarea id="nachricht" name="nachricht" rows="5" maxlength="5000" required aria-describedby="nachricht-error"></textarea>
+            <p class="field-error" id="nachricht-error" hidden
+                ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+                  ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    ><circle cx="12" cy="12" r="10"
+                    /><path d="M12 8v4m0 4h.01"
+                  /></g
+                ></svg
+                ><span></span
+              ></p>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="form-alert" role="alert" data-form-alert hidden data-od-id="send-error">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+              ><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21.73 18l-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3M12 9v4m0 4h.01"
+            /></svg>
+            <p>Das Senden hat leider nicht geklappt. Bitte versuche es noch einmal oder schreib uns direkt an <a href="mailto:office@equicrew.com">office@equicrew.com</a>.</p>
+          </div>
+          <p class="visually-hidden" aria-live="polite" data-form-status></p>
+          <div class="form-foot">
+            <button class="btn btn-primary" type="submit" data-od-id="send-button"><span>Senden</span></button>
+            <p class="form-note">Wie wir mit deinen Angaben umgehen: <a href="/datenschutz/">Datenschutz</a></p>
+          </div>
+        </form>
+        <div class="sheet thanks" data-contact-thanks hidden role="status" tabindex="-1" data-od-id="contact-thanks">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"
+            ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              ><circle cx="12" cy="12" r="10"
+              /><path d="m16 9l-5.5 5.5L8 12"
+            /></g
+          ></svg>
+          <h2 class="h-2">Danke für deine Nachricht!</h2>
+        </div>
+      </div>
+      <aside class="cell cell--dark cell--sq contact-card g-8-12" aria-labelledby="contact-details-heading" data-od-id="contact-details">
+        <h2 class="h-2" id="contact-details-heading">So erreichst du uns!</h2>
+        <dl>
+          <div><dt class="label">Adresse</dt><dd><address>Marktplatz 14<br>4310 Mauthausen<br>Österreich</address></dd></div>
+          <div><dt class="label">Email</dt><dd><a href="mailto:office@equicrew.com">office@equicrew.com</a></dd></div>
+          <div><dt class="label">Telefonnummer</dt><dd class="num"><a href="tel:+436504593129">+43 650 4593 129</a></dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer" data-od-id="site-footer">
