@@ -1,0 +1,81 @@
+/* Über uns (/ueber-uns/): the page-only parts of design/mockups/ueber-uns.html —
+   crew text, full-bleed group photo, the founder grid with the raised middle portrait
+   and the row of further links (design/mockups/styles.css:273-290). Everything else
+   is composed from the kit (base.css, components.css). */
+
+.crew-text {
+  display: grid;
+  gap: var(--s-3);
+}
+@media (min-width: 640px) {
+  .crew-text {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bleed {
+  margin-top: var(--s-5);
+}
+.bleed img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+@media (max-width: 720px) {
+  .bleed img {
+    aspect-ratio: 4 / 3;
+  }
+}
+.bleed figcaption {
+  padding-top: var(--s-2);
+  color: var(--muted);
+}
+
+.team-grid {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  align-items: end;
+}
+@media (min-width: 821px) {
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .person--raised {
+    margin-top: -32px;
+  }
+}
+@media (max-width: 820px) {
+  .team-grid {
+    max-width: 420px;
+  }
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  min-width: 0;
+}
+.person img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 22%;
+  border-radius: var(--r-cell);
+}
+.person-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.person a {
+  overflow-wrap: anywhere;
+}
+
+.page-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
