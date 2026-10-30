@@ -1,0 +1,60 @@
+/* Kit / contact: the Kontakt screen's layout, the dark details card and the thank-you
+   sheet. Source: design/mockups/styles.css ("contact page") and kontakt-gesendet.html. */
+
+.contact-grid {
+  align-items: start;
+}
+
+/* details card: address, e-mail, phone on the dark cell */
+.contact-card {
+  gap: var(--s-3);
+}
+.contact-card dl {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+}
+.contact-card dt {
+  color: var(--on-band-muted);
+  margin-bottom: var(--s-1);
+}
+.contact-card dd {
+  font-size: var(--fs-20);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contact-card a {
+  text-underline-offset: 4px;
+  transition: color var(--t-ui);
+}
+@media (hover: hover) {
+  .contact-card a:hover {
+    color: var(--accent);
+  }
+}
+.contact-card a:active {
+  color: var(--accent-press);
+}
+
+/* thank-you sheet shown in place of the form after a successful send */
+.thanks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 320px;
+}
+.thanks[hidden] {
+  display: none;
+}
+.thanks .icon {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card a {
+    transition: none;
+  }
+}

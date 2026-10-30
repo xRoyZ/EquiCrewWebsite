@@ -1,0 +1,23 @@
+/* Kit / legal: the reading column of the Impressum and Datenschutz screens and the marked
+   placeholder for an entry EquiCrew still has to supply. Source: design/mockups/styles.css
+   ("legal pages"), impressum.html and datenschutz.html. */
+
+.legal {
+  max-width: 640px;
+  min-width: 0;
+}
+
+/* placeholder: a tone chip, its first words bold ("Platzhalter:") */
+.placeholder {
+  display: inline-block;
+  max-width: 100%;
+  padding: var(--s-1) 12px;
+  border: 0;
+  border-radius: var(--r-img);
+  background: var(--tone);
+  font-size: var(--fs-16);
+  overflow-wrap: anywhere;
+}
+.placeholder b {
+  font-weight: 700;
+}
