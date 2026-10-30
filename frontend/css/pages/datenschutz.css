@@ -1,0 +1,32 @@
+/* Datenschutz page: the page-only part of region `privacy` (design/mockups/datenschutz.html).
+   Source: design/mockups/styles.css "legal pages" (.legal-sections) and datenschutz.html:39. */
+
+.privacy-lead {
+  margin-top: var(--s-3);
+}
+
+.legal-sections {
+  margin-top: var(--s-4);
+  display: grid;
+  gap: var(--s-3);
+}
+
+.legal-sections section {
+  display: grid;
+  gap: var(--s-1);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+  min-width: 0;
+}
+
+.legal-sections ul {
+  display: grid;
+  gap: var(--s-1);
+  list-style: disc;
+  padding-left: var(--s-3);
+}
+
+.legal-sections a {
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
